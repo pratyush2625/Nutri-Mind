@@ -1,3 +1,28 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "landing-hero",
+      "description": "A vibrant and healthy flat lay of foods.",
+      "imageUrl": "https://images.unsplash.com/photo-1547592180-85f173990554?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxoZWFsdGh5JTIwZm9vZHxlbnwwfHx8fDE3NjE2ODA0MDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "healthy food"
+    },
+    {
+      "id": "food-recommendation-1",
+      "description": "A bowl of fresh berries and yogurt.",
+      "imageUrl": "https://images.unsplash.com/photo-1753173302295-c66120b61947?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxiZXJyaWVzJTIweW9ndXJ0fGVufDB8fHx8MTc2MTcxNzkxNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "berries yogurt"
+    },
+    {
+      "id": "food-recommendation-2",
+      "description": "Grilled salmon with asparagus.",
+      "imageUrl": "https://images.unsplash.com/photo-1611599537845-1c7aca0091c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxncmlsbGVkJTIwc2FsbW9ufGVufDB8fHx8MTc2MTYwMzk2NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "grilled salmon"
+    },
+    {
+      "id": "food-recommendation-3",
+      "description": "A handful of mixed nuts.",
+      "imageUrl": "https://images.unsplash.com/photo-1693812879565-c0cf703dd7b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtaXhlZCUyMG51dHN8ZW58MHx8fHwxNzYxNjQ5NjU1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "mixed nuts"
+    }
+  ]
 }
