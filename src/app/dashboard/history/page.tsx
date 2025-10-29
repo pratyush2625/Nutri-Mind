@@ -1,3 +1,5 @@
+'use client';
+
 import {
     Card,
     CardContent,
@@ -14,43 +16,8 @@ import {
     TableRow,
   } from '@/components/ui/table';
   import { Badge } from '@/components/ui/badge';
-  import type { JournalEntry } from '@/lib/types';
   import { formatDate } from '@/lib/utils';
-  
-  const mockHistory: JournalEntry[] = [
-    {
-      id: '1',
-      date: '2023-10-26',
-      timestamp: '2023-10-26T10:00:00.000Z',
-      entry: 'Felt really productive today and finished a major project. The weather was beautiful, and I went for a long walk.',
-      mood: 'Happy',
-      foodRecommendations: ['Dark Chocolate', 'Salmon', 'Nuts'],
-    },
-    {
-      id: '2',
-      date: '2023-10-25',
-      timestamp: '2023-10-25T14:30:00.000Z',
-      entry: 'Struggled to focus at work and felt a bit overwhelmed. Didn\'t sleep well last night.',
-      mood: 'Sad',
-      foodRecommendations: ['Oatmeal', 'Bananas', 'Lentils'],
-    },
-    {
-      id: '3',
-      date: '2023-10-24',
-      timestamp: '2023-10-24T09:15:00.000Z',
-      entry: 'Traffic was terrible this morning, and I had a frustrating meeting. Feeling quite irritable.',
-      mood: 'Angry',
-      foodRecommendations: ['Chamomile Tea', 'Avocado', 'Almonds'],
-    },
-    {
-      id: '4',
-      date: '2023-10-23',
-      timestamp: '2023-10-23T18:45:00.000Z',
-      entry: 'Just a regular day. Nothing special happened, but feeling content and stable.',
-      mood: 'Neutral',
-      foodRecommendations: ['Balanced Meal', 'Fruits', 'Vegetables'],
-    },
-  ];
+  import { useJournalHistory } from '@/context/JournalHistoryContext';
   
   const moodVariantMap: { [key: string]: 'default' | 'secondary' | 'destructive' | 'outline' } = {
       'Happy': 'default',
@@ -60,6 +27,8 @@ import {
   }
   
   export default function HistoryPage() {
+    const { history } = useJournalHistory();
+  
     return (
       <Card>
         <CardHeader>
@@ -69,28 +38,35 @@ import {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-[160px]">Date</TableHead>
-                <TableHead>Journal Entry</TableHead>
-                <TableHead className="w-[100px]">Mood</TableHead>
-                <TableHead>Recommendations</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {mockHistory.map((item) => (
-                <TableRow key={item.id}>
-                  <TableCell className="font-medium">{formatDate(item.timestamp)}</TableCell>
-                  <TableCell className="max-w-xs truncate text-muted-foreground">{item.entry}</TableCell>
-                  <TableCell>
-                    <Badge variant={moodVariantMap[item.mood] || 'outline'}>{item.mood}</Badge>
-                  </TableCell>
-                  <TableCell>{item.foodRecommendations.join(', ')}</TableCell>
+          {history.length === 0 ? (
+             <div className="text-center py-12">
+                <p className="text-muted-foreground">You don&apos;t have any journal entries yet.</p>
+                <p className="text-sm text-muted-foreground">Go to the Journal tab to write your first one.</p>
+             </div>
+          ) : (
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-[160px]">Date</TableHead>
+                  <TableHead>Journal Entry</TableHead>
+                  <TableHead className="w-[100px]">Mood</TableHead>
+                  <TableHead>Recommendations</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {history.map((item) => (
+                  <TableRow key={item.id}>
+                    <TableCell className="font-medium">{formatDate(item.timestamp)}</TableCell>
+                    <TableCell className="max-w-xs truncate text-muted-foreground">{item.entry}</TableCell>
+                    <TableCell>
+                      <Badge variant={moodVariantMap[item.mood] || 'outline'}>{item.mood}</Badge>
+                    </TableCell>
+                    <TableCell>{item.foodRecommendations.map(f => f.name).join(', ')}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )}
         </CardContent>
       </Card>
     );

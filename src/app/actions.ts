@@ -1,6 +1,6 @@
 'use server';
 
-import { moodBasedFoodRecommendation } from '@/ai/flows/mood-based-food-recommendation';
+import { moodBasedFoodRecommendation, type MoodBasedFoodRecommendationOutput } from '@/ai/flows/mood-based-food-recommendation';
 import { adjustCalorieGoals } from '@/ai/flows/calorie-adjustment';
 
 export async function getMoodAndFood(journalEntry: string) {

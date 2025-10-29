@@ -15,9 +15,17 @@ const MoodBasedFoodRecommendationInputSchema = z.object({
 });
 export type MoodBasedFoodRecommendationInput = z.infer<typeof MoodBasedFoodRecommendationInputSchema>;
 
+const FoodDetailSchema = z.object({
+  name: z.string().describe('The name of the food item.'),
+  nutritionalValues: z.string().describe('Key nutritional values (e.g., Calories, Protein, Carbs, Fat).'),
+  healthBenefits: z.string().describe('The primary health benefits of consuming this food.'),
+  bestTimeToEat: z.string().describe('The recommended time of day to eat this food.'),
+  moodSupport: z.string().describe('How this food helps support the user’s mood or energy levels.'),
+});
+
 const MoodBasedFoodRecommendationOutputSchema = z.object({
   mood: z.string().describe('The detected mood from the journal entry.'),
-  foodRecommendations: z.array(z.string()).describe('A list of food recommendations to improve the user’s mood.'),
+  foodRecommendations: z.array(FoodDetailSchema).describe('A list of detailed food recommendations to improve the user’s mood.'),
 });
 export type MoodBasedFoodRecommendationOutput = z.infer<typeof MoodBasedFoodRecommendationOutputSchema>;
 
@@ -70,13 +78,15 @@ const prompt = ai.definePrompt({
   tools: [analyzeMoodTool, foodRecommendationTool],
   input: {schema: MoodBasedFoodRecommendationInputSchema},
   output: {schema: MoodBasedFoodRecommendationOutputSchema},
-  prompt: `Analyze the journal entry below to determine the user's mood, and recommend foods that may improve their mood.
+  prompt: `Analyze the journal entry below to determine the user's mood.
+Then, for each recommended food, provide a detailed dashboard of information including nutritional values, health benefits, best time to eat, and how it supports the mood.
 
 Journal Entry: {{{journalEntry}}}
 
-First, use the analyzeMood tool to determine the mood.
-Then, use the foodRecommendation tool to get food recommendations for the determined mood.
-Return the mood and food recommendations in the output.
+1.  First, use the analyzeMood tool to determine the mood.
+2.  Then, use the foodRecommendation tool to get a list of food names.
+3.  For each food name, generate the detailed information required by the output schema (nutritionalValues, healthBenefits, bestTimeToEat, moodSupport).
+4.  Return the mood and the detailed food recommendations in the output.
 `,
 });
 

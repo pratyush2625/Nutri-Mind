@@ -4,18 +4,12 @@ import { useState } from 'react';
 import { getMoodAndFood } from '@/app/actions';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, Lightbulb, Smile, Frown, Meh, Utensils, Sparkles } from 'lucide-react';
-import Image from 'next/image';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
-
-type MoodAndFoodData = {
-  mood: string;
-  foodRecommendations: string[];
-};
-
-const foodImages = PlaceHolderImages.filter(p => p.id.startsWith('food-recommendation'));
+import { Loader2, Lightbulb, Smile, Frown, Meh, Utensils, Sparkles, Brain, Leaf, Clock } from 'lucide-react';
+import type { MoodBasedFoodRecommendationOutput } from '@/ai/flows/mood-based-food-recommendation';
+import { useJournalHistory } from '@/context/JournalHistoryContext';
 
 const MoodIcon = ({ mood }: { mood: string }) => {
   const lowerMood = mood.toLowerCase();
@@ -32,8 +26,9 @@ const MoodIcon = ({ mood }: { mood: string }) => {
 export function JournalClient() {
   const [journalEntry, setJournalEntry] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [result, setResult] = useState<MoodAndFoodData | null>(null);
+  const [result, setResult] = useState<MoodBasedFoodRecommendationOutput | null>(null);
   const { toast } = useToast();
+  const { addEntry } = useJournalHistory();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,6 +45,13 @@ export function JournalClient() {
       });
     } else if (response.data) {
       setResult(response.data);
+      addEntry({
+        id: new Date().toISOString(),
+        entry: journalEntry,
+        timestamp: new Date().toISOString(),
+        mood: response.data.mood,
+        foodRecommendations: response.data.foodRecommendations,
+      })
     }
 
     setIsLoading(false);
@@ -105,20 +107,50 @@ export function JournalClient() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 font-headline">
                     <Utensils className="w-5 h-5 text-primary"/>
-                    Food Recommendations
+                    Food Recommendations Dashboard
                 </CardTitle>
+                <CardDescription>
+                    AI-powered insights for your suggested foods.
+                </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <Accordion type="single" collapsible className="w-full">
                   {result.foodRecommendations.map((food, index) => (
-                    <div key={index} className="flex flex-col items-center text-center">
-                        <div className="relative w-full h-32 rounded-lg overflow-hidden mb-2">
-                            <Image src={foodImages[index % foodImages.length].imageUrl} alt={food} layout="fill" objectFit="cover" data-ai-hint={foodImages[index % foodImages.length].imageHint}/>
+                    <AccordionItem value={`item-${index}`} key={index}>
+                      <AccordionTrigger className="font-medium text-base">{food.name}</AccordionTrigger>
+                      <AccordionContent className="space-y-4 pt-2 text-muted-foreground">
+                        <div className="flex items-start gap-3">
+                            <Brain className="w-5 h-5 text-primary mt-1" />
+                            <div>
+                                <h4 className="font-semibold text-foreground">Mood Support</h4>
+                                <p>{food.moodSupport}</p>
+                            </div>
                         </div>
-                        <p className="font-medium text-sm">{food}</p>
-                    </div>
+                        <div className="flex items-start gap-3">
+                            <Leaf className="w-5 h-5 text-primary mt-1" />
+                            <div>
+                                <h4 className="font-semibold text-foreground">Health Benefits</h4>
+                                <p>{food.healthBenefits}</p>
+                            </div>
+                        </div>
+                        <div className="flex items-start gap-3">
+                            <Clock className="w-5 h-5 text-primary mt-1" />
+                            <div>
+                                <h4 className="font-semibold text-foreground">Best Time to Eat</h4>
+                                <p>{food.bestTimeToEat}</p>
+                            </div>
+                        </div>
+                        <div className="flex items-start gap-3">
+                            <Utensils className="w-5 h-5 text-primary mt-1" />
+                            <div>
+                                <h4 className="font-semibold text-foreground">Nutritional Info</h4>
+                                <p>{food.nutritionalValues}</p>
+                            </div>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
                   ))}
-                </div>
+                </Accordion>
               </CardContent>
             </Card>
           </>
