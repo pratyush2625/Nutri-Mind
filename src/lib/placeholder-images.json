@@ -8,21 +8,45 @@
     },
     {
       "id": "food-recommendation-1",
-      "description": "A bowl of fresh berries and yogurt.",
-      "imageUrl": "https://images.unsplash.com/photo-1753173302295-c66120b61947?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxiZXJyaWVzJTIweW9ndXJ0fGVufDB8fHx8MTc2MTcxNzkxNnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "berries yogurt"
+      "description": "A traditional Indian Thali with a variety of dishes.",
+      "imageUrl": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=1971&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "indian thali"
     },
     {
       "id": "food-recommendation-2",
-      "description": "Grilled salmon with asparagus.",
-      "imageUrl": "https://images.unsplash.com/photo-1611599537845-1c7aca0091c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxncmlsbGVkJTIwc2FsbW9ufGVufDB8fHx8MTc2MTYwMzk2NXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "grilled salmon"
+      "description": "A colorful platter of seasonal Indian fruits.",
+      "imageUrl": "https://images.unsplash.com/photo-1618897554346-658b1991a74d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "indian fruits"
     },
     {
       "id": "food-recommendation-3",
-      "description": "A handful of mixed nuts.",
-      "imageUrl": "https://images.unsplash.com/photo-1693812879565-c0cf703dd7b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtaXhlZCUyMG51dHN8ZW58MHx8fHwxNzYxNjQ5NjU1fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "mixed nuts"
+      "description": "A bowl of mixed vegetable curry.",
+      "imageUrl": "https://images.unsplash.com/photo-1589647363594-814457944b49?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "mixed vegetable curry"
+    },
+    {
+      "id": "food-recommendation-4",
+      "description": "Idli Sambar with chutney, a popular South Indian breakfast.",
+      "imageUrl": "https://images.unsplash.com/photo-1668665632288-a357a701a919?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "idli sambar"
+    },
+    {
+      "id": "food-recommendation-5",
+      "description": "Grilled Paneer Tikka skewers.",
+      "imageUrl": "https://images.unsplash.com/photo-1567188040759-fb8a873dc6d8?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "paneer tikka"
+    },
+    {
+      "id": "food-recommendation-6",
+      "description": "A plate of Poha, a light and healthy Indian snack.",
+      "imageUrl": "https://images.unsplash.com/photo-1695525012354-e4431f3640b3?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "poha"
+    },
+    {
+      "id": "food-recommendation-7",
+      "description": "A cup of hot Masala Chai.",
+      "imageUrl": "https://images.unsplash.com/photo-1596803244934-24c657640619?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "masala chai"
     }
   ]
 }

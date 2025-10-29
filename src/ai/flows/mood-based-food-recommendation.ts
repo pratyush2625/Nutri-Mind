@@ -11,13 +11,13 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const MoodBasedFoodRecommendationInputSchema = z.object({
-  journalEntry: z.string().describe('The user\u2019s journal entry for mood analysis.'),
+  journalEntry: z.string().describe('The user’s journal entry for mood analysis.'),
 });
 export type MoodBasedFoodRecommendationInput = z.infer<typeof MoodBasedFoodRecommendationInputSchema>;
 
 const MoodBasedFoodRecommendationOutputSchema = z.object({
   mood: z.string().describe('The detected mood from the journal entry.'),
-  foodRecommendations: z.array(z.string()).describe('A list of food recommendations to improve the user\u2019s mood.'),
+  foodRecommendations: z.array(z.string()).describe('A list of food recommendations to improve the user’s mood.'),
 });
 export type MoodBasedFoodRecommendationOutput = z.infer<typeof MoodBasedFoodRecommendationOutputSchema>;
 
@@ -53,15 +53,15 @@ const foodRecommendationTool = ai.defineTool({
   outputSchema: z.array(z.string()).describe('A list of food recommendations.'),
 }, async (input) => {
   // Basic implementation (replace with a more sophisticated recommendation system)
-  switch (input.mood) {
+  switch (input.mood.toLowerCase()) {
     case 'happy':
-      return ['Dark Chocolate', 'Salmon', 'Nuts'];
+      return ['Paneer Tikka', 'Thali', 'Masala Chai'];
     case 'sad':
-      return ['Oatmeal', 'Bananas', 'Lentils'];
+      return ['Idli Sambar', 'Poha', 'Seasonal Fruits'];
     case 'angry':
-      return ['Chamomile Tea', 'Avocado', 'Almonds'];
+      return ['Masala Chai', 'Mixed Veg Curry', 'Seasonal Fruits'];
     default:
-      return ['Balanced Meal', 'Fruits', 'Vegetables'];
+      return ['Thali', 'Seasonal Fruits', 'Mixed Veg Curry'];
   }
 });
 
